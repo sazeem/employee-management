@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-import {ProjectService} from '../../services/project.service';
+import {ProjectService} from '../../shared/services/project.service';
+import {PaginationService} from '../../shared/services/pagination.service';
 import {Projects} from '../../models/projects';
 
 @Component({
@@ -10,15 +11,18 @@ import {Projects} from '../../models/projects';
 export class ProjectsComponent implements OnInit {
   projects: Projects[];
   showSpinner:boolean = true;
-  constructor(private projectService: ProjectService) { }
+  constructor(
+    private projectService: ProjectService,
+    private paginationService: PaginationService
+  ) { }
 
   ngOnInit() {
     this.getProjects();
   }
   getProjects(): void {
     this.projectService.getProjects()
-    .subscribe(projects => {
-      this.projects = projects;
+    .subscribe(response => {
+      this.projects = response.items;
       this.showSpinner = false;
     });
   }

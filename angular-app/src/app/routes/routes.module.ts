@@ -11,9 +11,9 @@ const routes: Routes = [
   { path: '', redirectTo: '/projects', pathMatch: 'full' },
   { path: 'roles', component: RolesComponent },
   { path: 'employees', component: EmployeesComponent },
-  { path: 'employees/detail/:id', component: EmployeeDetailsComponent },
+  { path: 'employee-detail/:id', component: EmployeeDetailsComponent },
   { path: 'projects', component: ProjectsComponent },
-  { path: 'projects/detail/:id', component: ProjectDetailsComponent },
+  { path: 'project-detail/:id', component: ProjectDetailsComponent },
 ];
 
 @NgModule({

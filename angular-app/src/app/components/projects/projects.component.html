@@ -13,15 +13,20 @@
     <td class = "table-data">{{project.id}}</td>
     <td class = "table-data">{{project.name}}</td>
   </tr>
+  <tr *ngIf ="showAddButton">
+    <td><button id="add-button" (click)="clickedAdd()">+</button></td>
+  </tr>
 </table>
+
 <app-pager [page]="paginationService.getPage(paginationService.projectUrl)"
-[totalPages]="paginationService.totalPages"
-(changePage)="paginationService.setPage(paginationService.projectUrl,$event); getProjects();"></app-pager>
-<br/>
-<br/>
-<h2>Add Employee</h2>
-<br/>  
-<div class = "center-div">
+           [totalPages]="paginationService.totalPages"
+           (changePage)="paginationService.setPage(paginationService.projectUrl,$event); getProjects();">
+</app-pager>
+
+<div *ngIf="clickAdd" class = "center-div">
+  <h2>Add Project</h2>
+  <br/>
+  
   <label>Project Id:<br/>
     <input #projectId />
   </label><br/>

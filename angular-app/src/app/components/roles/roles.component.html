@@ -13,22 +13,27 @@
     <td class="table-data">{{role.id}}</td>  
     <td class="table-data">{{role.name}}</td>  
   </tr>
+  <tr *ngIf ="showAddButton">
+    <td><button id="add-button" (click)="clickedAdd()">+</button></td>
+  </tr>
 </table>
+
 <app-pager [page]="paginationService.getPage(paginationService.roleUrl)"
-[totalPages]="paginationService.totalPages"
-(changePage)="paginationService.setPage(paginationService.roleUrl,$event); getRoles();"></app-pager>
-<br/>
-<br/>
-<h2>Add Role</h2>
-<br/>  
-<div class = "center-div">
+           [totalPages]="paginationService.totalPages"
+           (changePage)="paginationService.setPage(paginationService.roleUrl,$event); getRoles();">
+</app-pager>
+
+<div *ngIf="clickAdd" class = "center-div">
+  <h2>Add Role</h2>
+  <br/>  
+
   <label>Role Id:<br/>
     <input #roleId />
   </label><br/>
   <label>Role Name:<br/>
     <input #roleName />
   </label><br/>  
-  <button (click)="add(roleId.value,roleName.value); roleId.value=''; roleName.value='';">
+  <button (click)="addRole(roleId.value,roleName.value); roleId.value=''; roleName.value='';">
     add
   </button>
 </div>

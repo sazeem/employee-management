@@ -1,14 +1,25 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
-
+import { RouterTestingModule } from '@angular/router/testing';
 import { EmployeesComponent } from './employees.component';
+import { LoadingSpinnerComponent } from '../../shared/loading-spinner/loading-spinner.component';
+import { HttpClientTestingModule } from '@angular/common/http/testing';
+import { PagerComponent } from '../../shared/pager/pager.component';
 
-describe('EmployeesComponent', () => {
+fdescribe('EmployeesComponent', () => {
   let component: EmployeesComponent;
   let fixture: ComponentFixture<EmployeesComponent>;
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ EmployeesComponent ]
+      imports: [
+        RouterTestingModule,
+        HttpClientTestingModule
+      ],
+      declarations: [ 
+        EmployeesComponent,
+        LoadingSpinnerComponent, 
+        PagerComponent,
+      ]
     })
     .compileComponents();
   }));
@@ -19,7 +30,12 @@ describe('EmployeesComponent', () => {
     fixture.detectChanges();
   });
 
-  it('should create', () => {
+  it('# Should Create Employees Component', () => {
     expect(component).toBeTruthy();
+  });
+
+  it('# Should Have Method Called getEmployees', () => {
+    expect(component.getEmployees).toBeTruthy();
+    expect(component.getEmployees).toEqual(jasmine.any(Function));
   });
 });

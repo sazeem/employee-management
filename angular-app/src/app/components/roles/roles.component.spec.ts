@@ -1,14 +1,25 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
-
+import { RouterTestingModule } from '@angular/router/testing';
 import { RolesComponent } from './roles.component';
+import { LoadingSpinnerComponent } from '../../shared/loading-spinner/loading-spinner.component';
+import { HttpClientTestingModule } from '@angular/common/http/testing';
+import { PagerComponent } from '../../shared/pager/pager.component';
 
-describe('RolesComponent', () => {
+fdescribe('RolesComponent', () => {
   let component: RolesComponent;
   let fixture: ComponentFixture<RolesComponent>;
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ RolesComponent ]
+      imports: [
+        RouterTestingModule,
+        HttpClientTestingModule
+      ],
+      declarations: [ 
+        RolesComponent,
+        LoadingSpinnerComponent, 
+        PagerComponent,
+      ]
     })
     .compileComponents();
   }));
@@ -19,7 +30,12 @@ describe('RolesComponent', () => {
     fixture.detectChanges();
   });
 
-  it('should create', () => {
+  it('# Should Create Roles Component', () => {
     expect(component).toBeTruthy();
+  });
+
+  it('# Should Have Method Called getRoles', () => {
+    expect(component.getRoles).toBeTruthy();
+    expect(component.getRoles).toEqual(jasmine.any(Function));
   });
 });

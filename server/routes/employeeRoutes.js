@@ -1,12 +1,15 @@
 const express = require('express');
-EmployeeController = require('../controllers/employeeController');
-mw = require('../controllers/middleware');
+const EmployeeController = require('../controllers/employeeController');
+const mw = require('../controllers/middleware');
 
 const employeeRoutes = () => {
   const employeeRoutes = express.Router();
   employeeRoutes.get('/employees', EmployeeController.employeeList);
+  employeeRoutes.get('/employees/:id', EmployeeController.getEmployeeById);
   employeeRoutes.post('/employees', EmployeeController.createEmployee);
-  employeeRoutes.get('/employees/:id', [mw.admin], EmployeeController.getEmployeeById);
+  employeeRoutes.put('/employees', EmployeeController.updateEmployee);
+  employeeRoutes.delete('/employees/:id', EmployeeController.deleteEmployee);
+  employeeRoutes.get('/employees/:id', EmployeeController.getEmployeeById);
   return employeeRoutes;
 }
 

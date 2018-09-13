@@ -8,20 +8,28 @@
   <tr class = "table-row">
     <td class = "table-data">ID</td>
     <td class = "table-data">EMPLOYEE NAME</td>
+    <td class="table-data">DELETE</td>
   </tr>
   <tr class = "table-row" *ngFor="let employee of employees">
-      <td class = "table-data"> {{employee.id}} </td>
-      <td class = "table-data"> {{employee.name}} </td> 
-  </tr>  
+      <td class = "table-data" routerLink="/employee-detail/{{employee.id}}"> {{employee.id}} </td>
+      <td class = "table-data" routerLink="/employee-detail/{{employee.id}}"> {{employee.name}} </td>
+      <td class = "table-data"><button (click)="delete(employee)">Delete</button></td>
+  </tr>
+  <tr *ngIf ="showAddButton">
+    <td><button id="add-button" (click)="clickedAdd()">+</button></td>
+  </tr>
 </table>
+
 <app-pager [page]="paginationService.getPage(paginationService.employeeUrl)"
-[totalPages]="paginationService.totalPages"
-(changePage)="paginationService.setPage(paginationService.employeeUrl,$event); getEmployees();"></app-pager>
-<br/>
-<br/>
-<h2>Add Employee</h2>
-<br/>
-<div class = "center-div">
+           [totalPages]="paginationService.totalPages"
+           (changePage)="paginationService.setPage(paginationService.employeeUrl,$event); getEmployees();">
+</app-pager>
+
+
+<div *ngIf="clickAdd" class = "center-div">
+  <h2>Add Employee</h2>
+  <br/>
+  
   <label>Employee Id:<br/>
     <input #employeeId />
   </label><br/>
@@ -36,5 +44,6 @@
   </label><br/>
   <button (click)="add(employeeId.value,employeeName.value,employeeSalary.value,employeeMentor.value); employeeId.value=''; employeeName.value='';employeeSalary.value='';employeeMentor.value='';">
     add
-  </button>  
+  </button>
+  <br/>
 </div>

@@ -1,5 +1,6 @@
 const employees = require('../models/employeeModel');
 const _ = require('lodash');
+const sequelize = require('sequelize');
 
 const EmployeeController = {
 
@@ -12,6 +13,7 @@ const EmployeeController = {
     .then(totalEmployees => {
       totalItems = totalEmployees.length;
       employees.findAll({
+        order:sequelize.literal('id ASC'),
         limit: limit,
         offset: (page-1)*(limit)
       })
@@ -44,17 +46,43 @@ const EmployeeController = {
       res.status(400).send(err.parent.detail);
      });  
   },
+
+  deleteEmployee: (req,res) => {    
+    employees.destroy({
+      where:{
+        id: req.params.id,
+      }
+    })
+    .then((value) => {      
+      if(value === 1){
+        return res.status(204).send('');
+      }
+      return res.status(400).send("Error");
+    });
+  },
+
   getEmployeeById : (req,res) => {
     employees.findById(req.params.id)
-     .then(employees => {
-      if(employees.length == {})
-        res.status(400).send("Employee with given ID doesn't exist!");
-      res.send(employees);
+     .then(employee => {
+      if(employee.length == {})
+        return res.status(400).send("Employee with given ID doesn't exist!");
+      res.status(200).send(employee);
      })
      .catch((err) =>{
       res.status(400).send("Employee with given ID doesn't exist!");
      });
-  }  
+  },
+
+  updateEmployee: (req,res) => {
+    employees.upsert(req.body)
+    .then((changes) => {
+      if(changes){
+        return res.status(201).send(req.body);
+      }
+      return res.status(201).send(req.body);
+    });
+  },
+
 }
 
 module.exports = EmployeeController;

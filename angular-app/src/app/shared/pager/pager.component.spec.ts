@@ -2,7 +2,7 @@ import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 
 import { PagerComponent } from './pager.component';
 
-describe('PagerComponent', () => {
+fdescribe('LoadingSpinnerComponent', () => {
   let component: PagerComponent;
   let fixture: ComponentFixture<PagerComponent>;
 
@@ -19,7 +19,15 @@ describe('PagerComponent', () => {
     fixture.detectChanges();
   });
 
-  it('should create', () => {
+  it('# Should Create Pager Component', () => {
     expect(component).toBeTruthy();
   });
+
+  it('# Should have a property called page initialized to 1',() => {
+    expect(component.page).toBe(1);
+  });
+
+  it('# Should have a property called totalPages initialized to 0',() => {
+    expect(component.totalPages).toBe(0);
+  })
 });

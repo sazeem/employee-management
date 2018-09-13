@@ -34,6 +34,18 @@ export class ProjectService {
       }));
   }
 
+  getEmployee(id: number): Observable<Employees> {
+    const url = `${this.employeeUrl}/${id}`;
+    return this.http.get<Employees>(url);      
+  }
+
+  updateEmployee(employee: Employees): Observable<any> {
+    return this.http.put(this.employeeUrl, employee, httpOptions);
+  }
+  deleteHero(employee: Employees): Observable<any>{
+    const url = `${this.employeeUrl}/${employee.id}`;
+    return this.http.delete(url,httpOptions);
+  }
   addEmployee(employee: Employees): Observable<Employees> {
     return this.http.post<Employees>(this.employeeUrl, employee, httpOptions);
   }

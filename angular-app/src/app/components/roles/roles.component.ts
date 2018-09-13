@@ -11,6 +11,8 @@ import { RoleResponse } from '../../models/role.response';
 })
 export class RolesComponent implements OnInit {  
   roleResponse:RoleResponse;
+  clickAdd:boolean = false;
+  showAddButton:boolean = false;
 
   roles: Roles[];
   showSpinner:boolean = true;
@@ -22,19 +24,41 @@ export class RolesComponent implements OnInit {
   ngOnInit() {
     this.getRoles();
   }
+
   getRoles(): void {
     this.projectService.getRoles()
     .subscribe(response => {
       this.roles = response.items;
       this.showSpinner = false;
+      if(this.paginationService._rolePage === this.paginationService.totalPages){
+        this.showAddButton = true;
+        return;
+      }
+      this.showAddButton = false;
+      this.clickAdd = false;
     });
   }
-  add(id:number, name: string): void {
+
+  clickedAdd() {
+    let value = document.getElementById("add-button").innerHTML;
+    if(value ==='+'){
+      this.clickAdd = true;
+      document.getElementById("add-button").innerHTML = '-';
+    }
+    else if(value ==='-'){
+      this.clickAdd = false;
+      document.getElementById("add-button").innerHTML = '+';
+    }        
+  }
+
+  addRole(id:number, name: string): void {
     name = name.trim();
     if (!name && !id) { return; }
     this.projectService.addRole({id:id,name:name} as Roles)
       .subscribe(roles => {
         this.roles.push(roles);
+        this.clickAdd = false;
+        document.getElementById("add-button").innerHTML = '+';
       });
   }
 

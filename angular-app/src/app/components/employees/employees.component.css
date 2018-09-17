@@ -3,15 +3,9 @@
 }
 
 .table {
-  width:100%;
-}
-
-.table-header {
-  display:flex;
-  width:100%;
-  background:lightpink;
-  padding:10px;
-  text-align: center;
+  width:80%;
+  margin-left: auto;
+  margin-right: auto;
 }
 
 .table-row {
@@ -20,60 +14,15 @@
   padding:10px; 
 }
 
-.table-data, .header__item {
+.table-header {
+  flex: 1 1 20%;
+  text-align:center;  
+  font-size: large;
+}
+.table-data {
   flex: 1 1 20%;
   text-align:center;
-}
-
-.employees {
-  margin: 0 0 2em 0;
-  list-style-type: none;
-  padding: 0;
-  width: 15em;
-}
-.employees li {
-  position: relative;
-  cursor: pointer;
-  background-color: #EEE;
-  margin: .5em;
-  padding: .3em 0;
-  height: 1.6em;
-  border-radius: 4px;
-}
-
-.employees li:hover {
-  color: #607D8B;
-  background-color: #DDD;
-  left: .1em;
-}
-
-.employees a {
-  color: #888;
-  text-decoration: none;
-  position: relative;
-  display: block;
-  width: 250px;
-}
-
-.employees a:hover {
-  color:#607D8B;
-}
-
-.employees .badge {
-  display: inline-block;
-  font-size: small;
-  color: white;
-  padding: 0.8em 0.7em 0 0.7em;
-  background-color: #607D8B;
-  line-height: 1em;
-  position: relative;
-  left: -1px;
-  top: -4px;
-  height: 1.8em;
-  min-width: 16px;
-  text-align: right;
-  margin-right: .8em;
-  border-radius: 4px 0 0 4px;
+  font-size: medium;
 }
 
 button {
@@ -88,6 +37,7 @@ button {
 
 button:hover {
   background-color: #cfd8dc;
+  color: #039be5;
 }
 
 button.delete {

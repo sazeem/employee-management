@@ -1,30 +1,31 @@
 <loading-spinner *ngIf="showSpinner"></loading-spinner>
 <br/>
 <br/>
-<table class="table">
-  <tr class="header__item">
-    <td class = "table-data">My Employees</td>
-  </tr>
-  <tr class = "table-row">
-    <td class = "table-data">ID</td>
-    <td class = "table-data">EMPLOYEE NAME</td>
-    <td class="table-data">DELETE</td>
-  </tr>
-  <tr class = "table-row" *ngFor="let employee of employees">
-      <td class = "table-data" routerLink="/employee-detail/{{employee.id}}"> {{employee.id}} </td>
-      <td class = "table-data" routerLink="/employee-detail/{{employee.id}}"> {{employee.name}} </td>
-      <td class = "table-data"><button (click)="delete(employee)">Delete</button></td>
-  </tr>
-  <tr *ngIf ="showAddButton">
-    <td><button id="add-button" (click)="clickedAdd()">+</button></td>
-  </tr>
-</table>
+<div class="center-div">
+  <table class="table">
+      <tr class="table-header">
+        <td>My Employees</td>
+      </tr>
+      <tr class = "table-row">
+        <td class = "table-data">ID</td>
+        <td class = "table-data">EMPLOYEE NAME</td>
+        <td class="table-data">DELETE</td>
+      </tr>
+      <tr class = "table-row" *ngFor="let employee of employees">
+          <td class = "table-data" routerLink="/employee-detail/{{employee.id}}"> {{employee.id}} </td>
+          <td class = "table-data" routerLink="/employee-detail/{{employee.id}}"> {{employee.name}} </td>
+          <td class = "table-data"><button (click)="delete(employee)">Delete</button></td>
+      </tr>
+      <tr *ngIf ="showAddButton">
+        <td><button id="add-button" (click)="clickedAdd()">+</button></td>
+      </tr>
+    </table>
+</div>
 
 <app-pager [page]="paginationService.getPage(paginationService.employeeUrl)"
            [totalPages]="paginationService.totalPages"
            (changePage)="paginationService.setPage(paginationService.employeeUrl,$event); getEmployees();">
 </app-pager>
-
 
 <div *ngIf="clickAdd" class = "center-div">
   <h2>Add Employee</h2>
@@ -47,3 +48,18 @@
   </button>
   <br/>
 </div>
+
+<ol>
+  <li>
+    <mat-form-field>
+      <input matInput [(ngModel)]="name" placeholder="What's your name?">
+    </mat-form-field>
+  </li>
+  <li>
+    <button mat-raised-button (click)="openDialog()">Pick one</button>
+  </li>
+  <li *ngIf="animal">
+    You chose: <i>{{animal}}</i>
+  </li>
+</ol>
+

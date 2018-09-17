@@ -1,20 +1,27 @@
-<div *ngIf="employee" class = "center-div">
-  <h2>Update Employee</h2>
+<div *ngIf="employee" class = "center-div">  
   <br/>
-  
-  <label>Employee Id:<br/>
-    <input [(ngModel)]="employee.id" placeholder="Enter Employee Id" />
-  </label><br/>
-  <label>Employee Name:<br/>
-    <input [(ngModel)]="employee.name" placeholder="Enter Employee Name" />
-  </label><br/>
-  <label>Employee Salary:<br/>
-    <input [(ngModel)]="employee.salary" placeholder="Enter Employee Salary" />
-  </label><br/>
-  <label>Reporting Manager:<br/>
-    <input [(ngModel)]="employee.reporting_manager_id" placeholder="Enter Employee Name" />
-  </label><br/>
-  <button class = "button" (click)="goBack()"><span>&larr; Go Back</span></button> |
-  <button class = "button" (click)="save()">Save</button>
-  <br/>
+  <table class="table">
+    <tr class="table-row">
+      <td class="table-header">Update Employee</td>
+    </tr>
+    <tr class="table-row">
+      <td class="table-data">Employee Id:</td>
+      <td class="table-data"><input [disabled]="true" [(ngModel)]="employee.id" placeholder="Enter Employee Id" /></td>
+    </tr>
+    <tr class="table-row">
+      <td class="table-data">Employee Name:</td>
+      <td class="table-data"><input [(ngModel)]="employee.name" placeholder="Enter Employee Name" /></td>
+    </tr>
+    <tr class="table-row">
+      <td class="table-data">Employee Salary:</td>
+      <td class="table-data"><input [(ngModel)]="employee.salary" placeholder="Enter Employee Salary" /></td>
+    </tr>
+    <tr class="table-row">
+      <td class="table-data">Reporting Manager:</td>
+      <td class="table-data"><input [(ngModel)]="employee.reporting_manager_id" placeholder="Enter Mentor Name" /></td>
+    </tr>          
+    <button class = "button" (click)="goBack()"><span>&larr; Go Back</span></button> |
+    <button class = "button" (click)="save()">Save</button>
+    <br/>
+  </table>
 </div>

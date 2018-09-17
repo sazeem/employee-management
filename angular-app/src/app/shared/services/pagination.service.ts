@@ -50,6 +50,7 @@ export class PaginationService {
 
   get totalPages() {
     try {
+      if(this.totalValues===0) return 1;
       return Math.ceil(this.totalValues / this.pageSize);
     } catch (e) {
       console.error(e);
